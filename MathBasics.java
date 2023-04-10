@@ -2,7 +2,8 @@ public class MathBasics{
 	
 	public static void main(String[] args) {
 		
-		System.out.println( reverse(1911212219));
+		//System.out.println(checkPrime(7));
+		printDivisors(7);
 	
 	}
 
@@ -55,5 +56,67 @@ public class MathBasics{
 			reversed = (reversed * 10) + digit;
 		}
 		return reversed == duplicate;
+	}
+
+	// gcd of the number
+
+	public static int gcd( int a , int b){
+
+		while( a > 0 && b> 0){
+			if( a> b){
+				a =a%b;
+			}else{
+				b = b%a;
+			}
+		}
+		if( a== 0 )
+			return b;
+		return a;
+	}
+
+	// Armstrong numbers
+	// 3 7 1 cube to inidiviusal number sum to this number
+	public static boolean isArmstrongNumber( int number ){
+
+		int ans = 0;
+		int numberCopy = number;
+		while( number != 0 ){
+			int digit = number % 10;
+			ans += (digit*digit*digit);
+			number /= 10;
+		}
+		return numberCopy == ans;
+	}
+
+	// print all divisors
+	public static void printDivisors( int number ){
+		int count = 0;
+		for (int i = 1;i*i <= number ; i++ ) {
+			if( number % i == 0){
+				System.out.println( i );
+				int n = number/i;
+				if( n != i){
+					System.out.println(n);
+				}
+			}
+			count++;
+		}
+		System.out.println(count);
+	}
+
+	// check for prime
+	// number have only two factors a 1 and itself
+	public static boolean checkPrime( int number ){
+		int count = 0;
+		for (int i = 1;i*i <= number ; i++ ) {
+			if( number % i == 0){
+				count++;
+				int n = number/i;
+				if( n != i){
+					count++;
+				}
+			}
+		}
+		return count == 2;
 	}
 }
